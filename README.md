@@ -3,11 +3,12 @@
 <img src=".github/gif/app.gif?raw=true" width="700px">
 
 ---
+
 The primary objective of this project is to create a highly scalable and reliable microservice architecture for a delivery tracking system.
 
 The centerpiece of the system is the RabbitMQ service, which acts as a distributed messaging queue. It enables seamless communication and data exchange between various microservices within the architecture. By leveraging RabbitMQ's robustness and fault tolerance, the delivery tracking system can handle high volumes of data and ensure reliable message processing. The architecure of the system is depicted in the diagram provided below.
 
-![Untitled drawio](https://github.com/vgnshiyer/Delivery-tracking-system/assets/39982819/ed63c5f2-9448-4a3a-8118-40d2730080ea)
+<img src=".github/diagram/diagram.png" width="700px">
 
 The deployment of this architecture is tailored to run on an Elastic Kubernetes Service (EKS) cluster within the Amazon Web Services (AWS) environment. However, the repository also provides instructions and appropriate directories for deploying the system on other platforms such as KOPS and Minikube.
 The above mentioned instructions can be found in the DevOps/ directory.
@@ -19,6 +20,7 @@ By following the steps outlined in the repository, you can deploy the microservi
 ### Run it on a local minikube cluster.
 
 1. Assuming that you have minikube installed, start a minikube cluster.
+
 ```
 minikube start
 ```
@@ -28,34 +30,41 @@ minikube start
 Run `eval $(minikube docker-env)`
 
 2. Run docker builds.
+
 ```
 chmod +x ./github/workflows/scripts/build.sh
 ./github/workflows/scripts/build.sh
 ```
 
 3. Run k8s application manifests
+
 ```
 chmod +x ./github/workflows/scripts/deploy.sh
 ./github/workflows/scripts/deploy.sh
 ```
 
 4. Verify all k8s resources are created in the minikube cluster.
+
 ```
 kubectl get all
 ```
 
 5. Expose api-gw if using minikube (run it in a separate terminal)
+
 ```
 minikube tunnel
 ```
 
 6. Serve the webpage and open the app on the browser.
+
 ```
 minikube service webapp -n dts
 ```
+
 This command will automatically open the webapp on your browser window.
 
 7. Purge all resources
+
 ```
 chmod +x ./github/workflows/scripts/destroy.sh
 ```
